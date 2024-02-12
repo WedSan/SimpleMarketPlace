@@ -2,7 +2,7 @@ package wedsan.simplemarketplace.core.domain;
 
 public abstract class User {
 
-    private long id;
+    private Long id;
 
     private String name;
 
@@ -14,7 +14,7 @@ public abstract class User {
 
     public User(){}
 
-    public User(long id, String name, String document, String email, Address address) {
+    public User(Long id, String name, String document, String email, Address address) {
         this.id = id;
         this.name = name;
         this.document = document;
@@ -22,11 +22,11 @@ public abstract class User {
         this.address = address;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

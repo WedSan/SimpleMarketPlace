@@ -14,7 +14,7 @@ public class Seller extends User{
         super();
     }
 
-    public Seller(long id, String name, String document, String email, Address address) {
+    public Seller(Long id, String name, String document, String email, Address address) {
         super(id, name, document, email, address);
         this.productsListSeller = new ArrayList<>();
         this.accountBalance = new BigDecimal(0);

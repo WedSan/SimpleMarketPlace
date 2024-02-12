@@ -10,7 +10,7 @@ public class Customer extends User {
     public Customer(){}
 
 
-    public Customer(long id, String name, String document, String email, Address address) {
+    public Customer(Long id, String name, String document, String email, Address address) {
         super(id, name, document, email, address);
         this.shoppingCart = new ArrayList<>();
     }
