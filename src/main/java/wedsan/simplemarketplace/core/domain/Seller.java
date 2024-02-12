@@ -1,6 +1,7 @@
 package wedsan.simplemarketplace.core.domain;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Seller extends User{
@@ -9,11 +10,14 @@ public class Seller extends User{
 
     private BigDecimal accountBalance;
 
-    public Seller() {}
+    public Seller() {
+        super();
+    }
 
-    public Seller(long id, String name, String document, List<Product> productsListSeller) {
-        super(id, name, document);
-        this.productsListSeller = productsListSeller;
+    public Seller(long id, String name, String document, String email, Address address) {
+        super(id, name, document, email, address);
+        this.productsListSeller = new ArrayList<>();
+        this.accountBalance = new BigDecimal(0);
     }
 
     public List<Product> getProductsListSeller() {

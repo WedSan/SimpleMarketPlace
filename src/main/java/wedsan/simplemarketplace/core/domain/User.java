@@ -14,10 +14,12 @@ public abstract class User {
 
     public User(){}
 
-    public User(long id, String name, String document) {
+    public User(long id, String name, String document, String email, Address address) {
         this.id = id;
         this.name = name;
         this.document = document;
+        this.email = email;
+        this.address = address;
     }
 
     public long getId() {
@@ -44,4 +46,19 @@ public abstract class User {
         this.document = document;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
 }

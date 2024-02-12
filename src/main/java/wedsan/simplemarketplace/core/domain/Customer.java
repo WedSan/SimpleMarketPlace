@@ -1,5 +1,6 @@
 package wedsan.simplemarketplace.core.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Customer extends User {
@@ -7,11 +8,10 @@ public class Customer extends User {
     private List<Product> shoppingCart;
 
     public Customer(){}
-    public Customer(long id, String name, String document, List<Product> shoppingCart) {
-        super(id, name, document);
-        this.shoppingCart = shoppingCart;
+
+
+    public Customer(long id, String name, String document, String email, Address address) {
+        super(id, name, document, email, address);
+        this.shoppingCart = new ArrayList<>();
     }
-
-
-
 }
