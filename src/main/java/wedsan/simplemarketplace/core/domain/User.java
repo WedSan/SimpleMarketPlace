@@ -14,6 +14,13 @@ public abstract class User {
 
     public User(){}
 
+    public User(String name, String document, String email, Address address) {
+        this.name = name;
+        this.document = document;
+        this.email = email;
+        this.address = address;
+    }
+
     public User(Long id, String name, String document, String email, Address address) {
         this.id = id;
         this.name = name;
