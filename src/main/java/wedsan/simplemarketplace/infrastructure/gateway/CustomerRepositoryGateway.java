@@ -6,7 +6,7 @@ import wedsan.simplemarketplace.infrastructure.persistence.CustomerRepository;
 
 public class CustomerRepositoryGateway implements CustomerGateway {
 
-    private CustomerRepository customerRepository;
+    private final CustomerRepository customerRepository;
 
     public CustomerRepositoryGateway(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
