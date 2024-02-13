@@ -8,6 +8,10 @@ public class CreateCustomerUseCaseImpl implements CreateCustomerUseCase {
 
     private final CustomerGateway customerGateway;
 
+    public CreateCustomerUseCaseImpl(CustomerGateway customerGateway) {
+        this.customerGateway = customerGateway;
+    }
+
     @Override
     public Customer create(Customer customerToBeSaved) {
         return customerGateway.save(customerToBeSaved);
