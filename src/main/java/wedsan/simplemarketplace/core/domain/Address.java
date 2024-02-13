@@ -2,16 +2,6 @@ package wedsan.simplemarketplace.core.domain;
 
 public class Address {
 
-    public Address(){}
-
-    public Address(String zipCode, String streetAddress, String city, String province, String addressNumber) {
-        this.zipCode = zipCode;
-        this.streetAddress = streetAddress;
-        this.city = city;
-        Province = province;
-        this.addressNumber = addressNumber;
-    }
-
     private String zipCode;
 
     private String streetAddress;
@@ -21,6 +11,16 @@ public class Address {
     private String Province;
 
     private String addressNumber;
+
+    public Address(){}
+
+    public Address(String zipCode, String streetAddress, String city, String province, String addressNumber) {
+        this.zipCode = zipCode;
+        this.streetAddress = streetAddress;
+        this.city = city;
+        Province = province;
+        this.addressNumber = addressNumber;
+    }
 
     public String getZipCode() {
         return zipCode;
