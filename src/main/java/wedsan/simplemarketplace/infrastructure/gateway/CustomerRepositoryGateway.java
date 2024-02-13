@@ -8,6 +8,10 @@ public class CustomerRepositoryGateway implements CustomerGateway {
 
     private CustomerRepository customerRepository;
 
+    public CustomerRepositoryGateway(CustomerRepository customerRepository) {
+        this.customerRepository = customerRepository;
+    }
+
     @Override
     public Customer save(Customer customerToBeSaved) {
         return this.customerRepository.save(customerToBeSaved);
