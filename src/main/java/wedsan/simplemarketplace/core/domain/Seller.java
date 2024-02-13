@@ -8,7 +8,7 @@ public class Seller extends User{
 
     private List<Product> productsListSeller;
 
-    private BigDecimal accountBalance;
+    private BigDecimal accountBalanceqwrwqrwqe;
 
     public Seller() {
         super();
