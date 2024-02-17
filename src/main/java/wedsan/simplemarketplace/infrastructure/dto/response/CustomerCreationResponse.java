@@ -19,7 +19,7 @@ public record CustomerCreationResponse(
         public CustomerCreationResponse(Customer customer) {
                 this(
                         customer.getName(),
-                        customer.getDocument(),
+                        customer.getDocument().getDocumentNumber(),
                         customer.getEmail(),
                         new AddressDto(customer.getAddress())
                 );
