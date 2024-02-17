@@ -6,7 +6,7 @@ public abstract class User {
 
     private String name;
 
-    private String document;
+    private UserDocument document;
 
     private String email;
 
@@ -14,20 +14,23 @@ public abstract class User {
 
     public User(){}
 
-    public User(String name, String document, String email, Address address) {
+
+    public User( String name, UserDocument document, String email, Address address) {
         this.name = name;
         this.document = document;
         this.email = email;
         this.address = address;
     }
 
-    public User(Long id, String name, String document, String email, Address address) {
+    public User(Long id, String name, UserDocument document, String email, Address address) {
         this.id = id;
         this.name = name;
         this.document = document;
         this.email = email;
         this.address = address;
     }
+
+
 
     public Long getId() {
         return id;
@@ -45,11 +48,11 @@ public abstract class User {
         this.name = name;
     }
 
-    public String getDocument() {
+    public UserDocument getDocument() {
         return document;
     }
 
-    public void setDocument(String document) {
+    public void setDocument(UserDocument document) {
         this.document = document;
     }
 
