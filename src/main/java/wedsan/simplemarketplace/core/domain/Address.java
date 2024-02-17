@@ -8,7 +8,7 @@ public class Address {
 
     private String city;
 
-    private String Province;
+    private String province;
 
     private String addressNumber;
 
@@ -18,7 +18,7 @@ public class Address {
         this.zipCode = zipCode;
         this.streetAddress = streetAddress;
         this.city = city;
-        Province = province;
+        this.province = province;
         this.addressNumber = addressNumber;
     }
 
@@ -47,11 +47,11 @@ public class Address {
     }
 
     public String getProvince() {
-        return Province;
+        return province;
     }
 
     public void setProvince(String province) {
-        Province = province;
+        this.province = province;
     }
 
     public String getAddressNumber() {
