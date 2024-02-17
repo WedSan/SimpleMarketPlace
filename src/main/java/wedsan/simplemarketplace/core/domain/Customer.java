@@ -7,11 +7,11 @@ public class Customer extends User {
 
     public Customer(){}
 
-    public Customer(String name, String document, String email, Address address){
+    public Customer(String name, CustomerDocument document, String email, Address address){
         super(name, document, email, address);
     }
 
-    public Customer(Long id, String name, String document, String email, Address address) {
+    public Customer(Long id, String name, CustomerDocument document, String email, Address address) {
         super(id, name, document, email, address);
     }
 }
