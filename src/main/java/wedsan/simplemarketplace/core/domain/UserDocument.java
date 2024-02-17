@@ -1,5 +1,7 @@
 package wedsan.simplemarketplace.core.domain;
 
+import wedsan.simplemarketplace.core.exception.UserDocumentInvalidException;
+
 public abstract class UserDocument {
 
     private String documentNumber;
@@ -15,7 +17,7 @@ public abstract class UserDocument {
             this.documentNumber = documentNumber;
         }
         else{
-            throw new IllegalArgumentException("Document is not valid");
+            throw new UserDocumentInvalidException("Document is not valid");
         }
     }
 
