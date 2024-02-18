@@ -8,10 +8,12 @@ import wedsan.simplemarketplace.infrastructure.dto.request.CustomerCreationReque
 import wedsan.simplemarketplace.infrastructure.dto.response.CustomerCreationResponse;
 
 @Component
-public class UserMapper {
+public class UserDtoMapper {
 
     public Customer toCustomer(CustomerCreationRequest customerCreationRequest){
-        Address address = new Address(customerCreationRequest.address().zipCode(),
+        Address address = new Address(
+                null,
+                customerCreationRequest.address().zipCode(),
                 customerCreationRequest.address().streetAddress(),
                 customerCreationRequest.address().city(),
                 customerCreationRequest.address().province(),
@@ -21,6 +23,7 @@ public class UserMapper {
                 customerCreationRequest.email(),
                 address);
     }
+
 
     public CustomerCreationResponse toCustomerCreationResponse(Customer customer){
         return new CustomerCreationResponse(customer);
