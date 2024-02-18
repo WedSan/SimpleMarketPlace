@@ -20,7 +20,6 @@ public class CustomerRepositoryGateway implements CustomerGateway {
     public Customer save(Customer customerToBeSaved) {
         CustomerEntity customerEntityToBeSaved = this.customerEntityMapper.toEntity(customerToBeSaved);
         CustomerEntity customerEntitySaved =  this.customerRepository.save(customerEntityToBeSaved);
-        Customer customerSaved = this.customerEntityMapper.toDomainObj(customerEntitySaved);
-        return customerSaved;
+        return this.customerEntityMapper.toDomainObj(customerEntitySaved);
     }
 }
