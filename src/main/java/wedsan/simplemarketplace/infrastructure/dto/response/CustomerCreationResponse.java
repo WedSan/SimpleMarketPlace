@@ -7,13 +7,13 @@ import wedsan.simplemarketplace.core.domain.Customer;
 import wedsan.simplemarketplace.infrastructure.dto.request.AddressDto;
 
 public record CustomerCreationResponse(
-        @NotBlank
+
         String name,
-        @NotBlank
+
         String document,
-        @Email
+
         String email,
-        @NotBlank
+
         AddressDto address
 ) {
         public CustomerCreationResponse(Customer customer) {
