@@ -24,4 +24,9 @@ public class CustomerRepositoryGateway implements CustomerGateway {
         CustomerEntity customerEntitySaved =  this.customerRepository.save(customerEntityToBeSaved);
         return this.customerEntityMapper.toDomainObj(customerEntitySaved);
     }
+
+    @Override
+    public boolean existsByDocument(String document) {
+        return this.customerRepository.existsByDocument(document);
+    }
 }

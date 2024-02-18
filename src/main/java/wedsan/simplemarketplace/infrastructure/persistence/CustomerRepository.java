@@ -7,4 +7,5 @@ import wedsan.simplemarketplace.infrastructure.entity.CustomerEntity;
 
 @Repository
 public interface CustomerRepository extends JpaRepository<CustomerEntity, Long>{
+    boolean existsByDocument(String document);
 }
