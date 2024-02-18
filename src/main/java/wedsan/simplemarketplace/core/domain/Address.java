@@ -2,6 +2,8 @@ package wedsan.simplemarketplace.core.domain;
 
 public class Address {
 
+    private Long id;
+
     private String zipCode;
 
     private String streetAddress;
@@ -14,12 +16,21 @@ public class Address {
 
     public Address(){}
 
-    public Address(String zipCode, String streetAddress, String city, String province, String addressNumber) {
+    public Address(Long id, String zipCode, String streetAddress, String city, String province, String addressNumber) {
+        this.id = id;
         this.zipCode = zipCode;
         this.streetAddress = streetAddress;
         this.city = city;
         this.province = province;
         this.addressNumber = addressNumber;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getZipCode() {
