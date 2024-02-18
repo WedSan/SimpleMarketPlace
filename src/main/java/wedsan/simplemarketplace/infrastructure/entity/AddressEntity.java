@@ -18,11 +18,11 @@ public class AddressEntity {
     private String streetAddress;
 
     @NotNull
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     private CityEntity city;
 
     @NotNull
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     private ProvinceEntity province;
     @NotNull
     private String addressNumber;

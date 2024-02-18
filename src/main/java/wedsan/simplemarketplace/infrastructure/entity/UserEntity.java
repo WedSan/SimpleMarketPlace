@@ -17,7 +17,7 @@ public abstract class UserEntity {
     @NotNull
     private String email;
     @NotNull
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     private AddressEntity address;
 
     public UserEntity(){}
