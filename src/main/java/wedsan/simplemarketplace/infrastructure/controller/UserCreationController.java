@@ -15,7 +15,7 @@ import wedsan.simplemarketplace.infrastructure.gateway.CustomerEntityMapper;
 import wedsan.simplemarketplace.infrastructure.mapper.UserDtoMapper;
 
 @RestController
-@RequestMapping("api/user/create")
+@RequestMapping("api/user/")
 public class UserCreationController {
 
     private final CreateCustomerUseCase createCustomerUseCase;
@@ -27,12 +27,14 @@ public class UserCreationController {
         this.userDtoMapper = userDtoMapper;
     }
 
-    @PostMapping
+    @PostMapping("customer")
     public ResponseEntity<CustomerCreationResponse> createCustomer(@RequestBody CustomerCreationRequest customerCreationRequest){
         Customer customerToBeSaved = this.userDtoMapper.toCustomer(customerCreationRequest);
         Customer customerSaved = this.createCustomerUseCase.create(customerToBeSaved);
         CustomerCreationResponse response =  this.userDtoMapper.toCustomerCreationResponse(customerSaved);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
+
+
 
 }
