@@ -9,6 +9,13 @@ import wedsan.simplemarketplace.infrastructure.entity.CustomerEntity;
 
 @Component
 public class CustomerEntityMapper {
+
+    private final AddressEntityMapper addressEntityMapper;
+
+    public CustomerEntityMapper(AddressEntityMapper addressEntityMapper) {
+        this.addressEntityMapper = addressEntityMapper;
+    }
+
     public CustomerEntity toEntity(Customer customer){
         return new CustomerEntity(customer.getId(),
                 customer.getName(),
@@ -22,14 +29,8 @@ public class CustomerEntityMapper {
                 customerEntity.getName(),
                 new CustomerDocument(customerEntity.getDocument()),
                 customerEntity.getEmail(),
-                toAddressDomain(customerEntity.getAddress()));
+                addressEntityMapper.toDomain(customerEntity.getAddress()));
     }
 
-    private Address toAddressDomain(AddressEntity address){
-        return new Address(address.getZipCode(),
-                address.getStreetAddress(),
-                address.getCity().getCityName(),
-                address.getProvince().getProvinceName(),
-                address.getAddressNumber());
-    }
+
 }
