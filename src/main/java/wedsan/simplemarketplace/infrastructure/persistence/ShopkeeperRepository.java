@@ -5,4 +5,5 @@ import wedsan.simplemarketplace.infrastructure.entity.ShopkeeperEntity;
 
 public interface ShopkeeperRepository extends JpaRepository<ShopkeeperEntity, Long> {
 
+    boolean existsByDocument(String document);
 }
