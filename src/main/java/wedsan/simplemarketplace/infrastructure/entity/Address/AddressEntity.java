@@ -1,4 +1,4 @@
-package wedsan.simplemarketplace.infrastructure.entity;
+package wedsan.simplemarketplace.infrastructure.entity.Address;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;

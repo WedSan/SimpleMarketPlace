@@ -2,7 +2,7 @@ package wedsan.simplemarketplace.infrastructure.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import wedsan.simplemarketplace.core.domain.Address;
+import wedsan.simplemarketplace.infrastructure.entity.Address.AddressEntity;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
