@@ -1,8 +1,8 @@
 package wedsan.simplemarketplace.core.domain;
 
-public class SellerDocument extends UserDocument{
+public class ShopkeeperDocument extends UserDocument{
 
-    public SellerDocument(String documentNumber) {
+    public ShopkeeperDocument(String documentNumber) {
         super(documentNumber);
     }
 

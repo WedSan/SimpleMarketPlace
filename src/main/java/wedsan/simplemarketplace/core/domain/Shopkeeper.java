@@ -1,20 +1,19 @@
 package wedsan.simplemarketplace.core.domain;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
-public class Seller extends User{
+public class Shopkeeper extends User{
 
     private List<Product> productsListSeller;
 
     private BigDecimal accountBalance;
 
-    public Seller() {
+    public Shopkeeper() {
         super();
     }
 
-    public Seller(Long id, String name, SellerDocument document, String email, Address address, List<Product> productsListSeller) {
+    public Shopkeeper(Long id, String name, ShopkeeperDocument document, String email, Address address, List<Product> productsListSeller) {
         super(id, name, document, email, address);
         this.productsListSeller = productsListSeller;
         this.accountBalance = new BigDecimal(0);
