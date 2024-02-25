@@ -19,7 +19,7 @@ import java.util.List;
 public class UserConfig {
 
     @Bean
-    CreateShopkeeperUseCase createCustomerUseCase(ShopkeeperGateway shopkeeperGateway, List<UserValidator> listUserValidator){
+    CreateShopkeeperUseCase createShopkeeperUseCase(ShopkeeperGateway shopkeeperGateway, List<UserValidator> listUserValidator){
         return new CreateShopkeeperUseCaseImpl(shopkeeperGateway,listUserValidator);
     }
 
