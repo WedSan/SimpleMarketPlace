@@ -7,11 +7,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import wedsan.simplemarketplace.application.usecase.CreateCustomerUseCase;
+import wedsan.simplemarketplace.application.usecase.CreateShopkeeperUseCase;
 import wedsan.simplemarketplace.core.domain.Customer;
+import wedsan.simplemarketplace.core.domain.Shopkeeper;
 import wedsan.simplemarketplace.infrastructure.dto.request.CustomerCreationRequest;
+import wedsan.simplemarketplace.infrastructure.dto.request.ShopkeeperCreationRequest;
+import wedsan.simplemarketplace.infrastructure.dto.response.ShopkeeperCreationResponse;
 import wedsan.simplemarketplace.infrastructure.dto.response.CustomerCreationResponse;
-import wedsan.simplemarketplace.infrastructure.entity.CustomerEntity;
-import wedsan.simplemarketplace.infrastructure.gateway.CustomerEntityMapper;
 import wedsan.simplemarketplace.infrastructure.mapper.UserDtoMapper;
 
 @RestController
@@ -20,10 +22,13 @@ public class UserCreationController {
 
     private final CreateCustomerUseCase createCustomerUseCase;
 
+    private final CreateShopkeeperUseCase shopkeeperUseCase;
+
     private final UserDtoMapper userDtoMapper;
 
-    public UserCreationController(CreateCustomerUseCase createCustomerUseCase, UserDtoMapper userDtoMapper) {
+    public UserCreationController(CreateCustomerUseCase createCustomerUseCase, CreateShopkeeperUseCase shopkeeperUseCase, UserDtoMapper userDtoMapper) {
         this.createCustomerUseCase = createCustomerUseCase;
+        this.shopkeeperUseCase = shopkeeperUseCase;
         this.userDtoMapper = userDtoMapper;
     }
 
@@ -35,6 +40,12 @@ public class UserCreationController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-
+    @PostMapping("shopkeeper")
+    public ResponseEntity<ShopkeeperCreationResponse> createShopkeeper(@RequestBody ShopkeeperCreationRequest shopkeeperCreationResponse){
+        Shopkeeper shopkeeperToBeSaved = this.userDtoMapper.toShopkeeper(shopkeeperCreationResponse);
+        Shopkeeper shopkeeperSaved = this.shopkeeperUseCase.create(shopkeeperToBeSaved);
+        ShopkeeperCreationResponse response = this.userDtoMapper.toShopkeeperCreationResponse(shopkeeperSaved);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
 
 }
