@@ -1,11 +1,11 @@
 package wedsan.simplemarketplace.infrastructure.mapper;
 
 import org.springframework.stereotype.Component;
-import wedsan.simplemarketplace.core.domain.Address;
-import wedsan.simplemarketplace.core.domain.Customer;
-import wedsan.simplemarketplace.core.domain.CustomerDocument;
+import wedsan.simplemarketplace.core.domain.*;
 import wedsan.simplemarketplace.infrastructure.dto.request.CustomerCreationRequest;
+import wedsan.simplemarketplace.infrastructure.dto.request.ShopkeeperCreationRequest;
 import wedsan.simplemarketplace.infrastructure.dto.response.CustomerCreationResponse;
+import wedsan.simplemarketplace.infrastructure.dto.response.ShopkeeperCreationResponse;
 
 @Component
 public class UserDtoMapper {
@@ -27,5 +27,25 @@ public class UserDtoMapper {
 
     public CustomerCreationResponse toCustomerCreationResponse(Customer customer){
         return new CustomerCreationResponse(customer);
+    }
+
+    public Shopkeeper toShopkeeper(ShopkeeperCreationRequest shopkeeperCreationRequest){
+        Address address = new Address(
+                null,
+                shopkeeperCreationRequest.address().zipCode(),
+                shopkeeperCreationRequest.address().streetAddress(),
+                shopkeeperCreationRequest.address().city(),
+                shopkeeperCreationRequest.address().province(),
+                shopkeeperCreationRequest.address().addressNumber());
+        return new Shopkeeper(null,
+                shopkeeperCreationRequest.name(),
+                new ShopkeeperDocument(shopkeeperCreationRequest.document()),
+                shopkeeperCreationRequest.email(),
+                address
+                );
+    }
+
+    public ShopkeeperCreationResponse toShopkeeperCreationResponse(Shopkeeper shopkeeper){
+        return new ShopkeeperCreationResponse(shopkeeper);
     }
 }
