@@ -17,6 +17,7 @@ public class ShopkeeperEntityMapper {
                 shopkeeper.getName(),
                 shopkeeper.getDocument().getDocumentNumber(),
                 shopkeeper.getEmail(),
+                shopkeeper.getPassword(),
                 toAddressEntity(shopkeeper.getAddress()));
     }
 
@@ -25,6 +26,7 @@ public class ShopkeeperEntityMapper {
                 shopkeeperEntity.getName(),
                 new ShopkeeperDocument(shopkeeperEntity.getDocument()),
                 shopkeeperEntity.getEmail(),
+                shopkeeperEntity.getPassword(),
                 toAddress(shopkeeperEntity.getAddress()));
     }
 
