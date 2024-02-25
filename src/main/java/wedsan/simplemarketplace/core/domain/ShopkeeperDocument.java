@@ -1,41 +1,79 @@
 package wedsan.simplemarketplace.core.domain;
 
-public class ShopkeeperDocument extends UserDocument{
+public class ShopkeeperDocument extends UserDocument {
 
     public ShopkeeperDocument(String documentNumber) {
         super(documentNumber);
     }
 
     @Override
-    boolean validateDocument(String document) {
-        document = document.replaceAll("\\D", "");
-
-        if (document.length() != 14 || !document.matches("\\d{14}")) {
+    public boolean validateDocument(String cnpj) {
+        if(cnpj == null || cnpj.isEmpty() ){
+            System.out.println("Fase 1 falhou");
             return false;
         }
+        cnpj = cnpj.replaceAll("[^0-9]","");
+        if(cnpj.length()>14){
+            System.out.println("Fase 2 falhou");
+            return false;
+        }
+        if(cnpj.matches("(\\d)\\1{13}")){
+            System.out.println("Fase 3 falhou");
+            return false;
+        }
+        System.out.println(cnpj);
+        int firstDigit = calculateFirstDigit(cnpj);
+        int secondDigit = calculateSecondDigit(cnpj);
 
-        int[] weights = {5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2};
+        int firstDigitCnpj = Integer.parseInt(String.valueOf(cnpj.charAt(12))) ;
+        int secondDigitCnpj = Integer.parseInt(String.valueOf(cnpj.charAt(13)));
+        System.out.println(firstDigit);
+        System.out.println(secondDigit);
+        System.out.println("Fase 4");
+        System.out.println(firstDigitCnpj);
+        System.out.println(secondDigitCnpj);
+        return  ((firstDigitCnpj == firstDigit) && (secondDigitCnpj == secondDigit));
+    }
+
+    private int calculateFirstDigit(String cnpj){
+        int[] weight = {5,4,3,2,9,8,7,6,5,4,3,2};
+        int verifyingDigit = 0;
 
         int sum = 0;
-        for (int i = 0; i < 12; i++) {
-            sum += (document.charAt(i) - '0') * weights[i];
+        for(int i =0; i<weight.length ; i++) {
+            String character = String.valueOf(cnpj.charAt(i));
+            int value = Integer.parseInt(character);
+            sum += weight[i] * value;
+        }
+        int rest = sum % 11;
+
+        if (rest < 2) {
+            verifyingDigit = 0;
+        } else {
+            verifyingDigit = 11 - rest;
+        }
+        return verifyingDigit;
+    }
+
+
+    private int calculateSecondDigit(String cnpj){
+        int verifyingDigit;
+        int sum = 0;
+        int [] weight = {6,5,4,3,2,9,8,7,6,5,4,3,2};
+        for(int i = 0; i<weight.length; i++){
+            String character = String.valueOf(cnpj.charAt(i));
+            int value = Integer.parseInt(character);
+            sum += weight[i] * value;
         }
 
-        int digit1 = 11 - (sum % 11);
-        if (digit1 > 9) {
-            digit1 = 0;
-        }
+        int rest = sum%11;
 
-        sum = 0;
-        for (int i = 0; i < 12; i++) {
-            sum += (document.charAt(i) - '0') * weights[i + 1];
+        if(rest < 2){
+            verifyingDigit =  0;
         }
-
-        int digit2 = 11 - (sum % 11);
-        if (digit2 > 9) {
-            digit2 = 0;
+        else{
+            verifyingDigit = 11-rest;
         }
-
-        return document.charAt(12) - '0' == digit1 && document.charAt(13) - '0' == digit2;
+        return verifyingDigit;
     }
 }
