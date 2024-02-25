@@ -9,8 +9,8 @@ public class Shopkeeper extends User{
         super();
     }
 
-    public Shopkeeper(Long id, String name, ShopkeeperDocument document, String email, Address address) {
-        super(id, name, document, email, address);
+    public Shopkeeper(Long id, String name, ShopkeeperDocument document, String email, String password, Address address) {
+        super(id, name, document, email, password, address);
     }
 
 }

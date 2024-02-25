@@ -10,23 +10,27 @@ public abstract class User {
 
     private String email;
 
+    private String password;
+
     private Address address;
 
     public User(){}
 
 
-    public User( String name, UserDocument document, String email, Address address) {
+    public User(String name, UserDocument document, String email, String password, Address address) {
         this.name = name;
         this.document = document;
         this.email = email;
+        this.password = password;
         this.address = address;
     }
 
-    public User(Long id, String name, UserDocument document, String email, Address address) {
+    public User(Long id, String name, UserDocument document, String email, String password, Address address) {
         this.id = id;
         this.name = name;
         this.document = document;
         this.email = email;
+        this.password = password;
         this.address = address;
     }
 
@@ -70,5 +74,13 @@ public abstract class User {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

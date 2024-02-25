@@ -21,6 +21,7 @@ public class CustomerEntityMapper {
                 customer.getName(),
                 customer.getDocument().getDocumentNumber(),
                 customer.getEmail(),
+                customer.getPassword(),
                 new AddressEntity(customer.getAddress()));
     }
 
@@ -29,6 +30,7 @@ public class CustomerEntityMapper {
                 customerEntity.getName(),
                 new CustomerDocument(customerEntity.getDocument()),
                 customerEntity.getEmail(),
+                customerEntity.getPassword(),
                 addressEntityMapper.toDomain(customerEntity.getAddress()));
     }
 

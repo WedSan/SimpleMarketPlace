@@ -21,6 +21,7 @@ public class UserDtoMapper {
         return new Customer(customerCreationRequest.name(),
                 new CustomerDocument(customerCreationRequest.document()),
                 customerCreationRequest.email(),
+                customerCreationRequest.password(),
                 address);
     }
 
@@ -41,6 +42,7 @@ public class UserDtoMapper {
                 shopkeeperCreationRequest.name(),
                 new ShopkeeperDocument(shopkeeperCreationRequest.document()),
                 shopkeeperCreationRequest.email(),
+                shopkeeperCreationRequest.password(),
                 address
                 );
     }

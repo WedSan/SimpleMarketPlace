@@ -17,16 +17,19 @@ public abstract class UserEntity {
     @NotNull
     private String email;
     @NotNull
+    private String password;
+    @NotNull
     @OneToOne(cascade = CascadeType.PERSIST)
     private AddressEntity address;
 
     public UserEntity(){}
 
-    public UserEntity(Long id, String name, String document, String email, AddressEntity address) {
+    public UserEntity(Long id, String name, String document, String email, String password, AddressEntity address) {
         this.id = id;
         this.name = name;
         this.document = document;
         this.email = email;
+        this.password = password;
         this.address = address;
     }
 
@@ -68,5 +71,13 @@ public abstract class UserEntity {
 
     public void setAddress(AddressEntity address) {
         this.address = address;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

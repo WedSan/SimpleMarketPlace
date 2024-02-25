@@ -10,8 +10,8 @@ public class ShopkeeperEntity extends UserEntity{
     public ShopkeeperEntity() {
     }
 
-    public ShopkeeperEntity(Long id, String name, String document, String email, AddressEntity address) {
-        super(id, name, document, email, address);
+    public ShopkeeperEntity(Long id, String name, String document, String email, String password, AddressEntity address) {
+        super(id, name, document, email, password, address);
     }
 
 }
