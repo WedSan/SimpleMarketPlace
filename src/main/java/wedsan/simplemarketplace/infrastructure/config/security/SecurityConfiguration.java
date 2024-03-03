@@ -8,7 +8,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import wedsan.simplemarketplace.infrastructure.security.JWTConstant;
+import wedsan.simplemarketplace.infrastructure.security.JWTKey;
 import wedsan.simplemarketplace.infrastructure.security.PasswordHasher;
 
 @Configuration
@@ -27,10 +27,5 @@ public class SecurityConfiguration {
     @Bean
     PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
-    }
-
-    @Bean
-    PasswordHasher passwordHasher(JWTConstant jwtConstant){
-        return new PasswordHasher("SHA-256", jwtConstant);
     }
 }

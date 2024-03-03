@@ -14,7 +14,8 @@ public class JWTKey {
        if(keyFromProperty == null){
            throw new RuntimeException("Security Key was not found!");
        }
-       this.KEY = keyFromProperty;
+       PasswordHasher passwordHasher = new PasswordHasher("SHA-256");
+       this.KEY = passwordHasher.hashPassword(keyFromProperty);
    }
 
    public String getKEY(){
