@@ -2,6 +2,7 @@ package wedsan.simplemarketplace.infrastructure.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,7 +34,7 @@ public class UserCreationController {
     }
 
     @PostMapping("customer")
-    public ResponseEntity<CustomerCreationResponse> createCustomer(@RequestBody CustomerCreationRequest customerCreationRequest){
+    public ResponseEntity<CustomerCreationResponse> createCustomer(@RequestBody @Validated CustomerCreationRequest customerCreationRequest){
         Customer customerToBeSaved = this.userDtoMapper.toCustomer(customerCreationRequest);
         Customer customerSaved = this.createCustomerUseCase.create(customerToBeSaved);
         CustomerCreationResponse response =  this.userDtoMapper.toCustomerCreationResponse(customerSaved);
@@ -41,7 +42,7 @@ public class UserCreationController {
     }
 
     @PostMapping("shopkeeper")
-    public ResponseEntity<ShopkeeperCreationResponse> createShopkeeper(@RequestBody ShopkeeperCreationRequest shopkeeperCreationResponse){
+    public ResponseEntity<ShopkeeperCreationResponse> createShopkeeper(@RequestBody @Validated ShopkeeperCreationRequest shopkeeperCreationResponse){
         Shopkeeper shopkeeperToBeSaved = this.userDtoMapper.toShopkeeper(shopkeeperCreationResponse);
         Shopkeeper shopkeeperSaved = this.shopkeeperUseCase.create(shopkeeperToBeSaved);
         ShopkeeperCreationResponse response = this.userDtoMapper.toShopkeeperCreationResponse(shopkeeperSaved);
