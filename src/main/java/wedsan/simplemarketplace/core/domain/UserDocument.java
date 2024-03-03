@@ -13,6 +13,7 @@ public abstract class UserDocument {
     abstract boolean validateDocument(String document);
 
     private void validateAndSetDocumentNumber(String documentNumber){
+        documentNumber = documentNumber.replaceAll("[^0-9]","");
         if(validateDocument(documentNumber)){
             this.documentNumber = documentNumber;
         }

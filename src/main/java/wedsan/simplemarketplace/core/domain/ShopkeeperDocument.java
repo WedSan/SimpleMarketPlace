@@ -12,7 +12,7 @@ public class ShopkeeperDocument extends UserDocument {
             System.out.println("Fase 1 falhou");
             return false;
         }
-        cnpj = cnpj.replaceAll("[^0-9]","");
+
         if(cnpj.length()>14){
             System.out.println("Fase 2 falhou");
             return false;

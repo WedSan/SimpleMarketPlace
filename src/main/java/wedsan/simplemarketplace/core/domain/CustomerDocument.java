@@ -8,7 +8,6 @@ public class CustomerDocument extends UserDocument {
 
     @Override
     boolean validateDocument(String document) {
-        document = document.replaceAll("\\D", "");
 
         if (document.length() != 11 || !document.matches("\\d{11}")) {
             return false;
