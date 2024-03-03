@@ -7,6 +7,8 @@ import wedsan.simplemarketplace.infrastructure.dto.request.ShopkeeperCreationReq
 import wedsan.simplemarketplace.infrastructure.dto.response.CustomerCreationResponse;
 import wedsan.simplemarketplace.infrastructure.dto.response.ShopkeeperCreationResponse;
 
+import java.util.Set;
+
 @Component
 public class UserDtoMapper {
 
@@ -22,6 +24,7 @@ public class UserDtoMapper {
                 new CustomerDocument(customerCreationRequest.document()),
                 customerCreationRequest.email(),
                 customerCreationRequest.password(),
+                Set.of(UserRole.USER),
                 address);
     }
 
@@ -43,6 +46,7 @@ public class UserDtoMapper {
                 new ShopkeeperDocument(shopkeeperCreationRequest.document()),
                 shopkeeperCreationRequest.email(),
                 shopkeeperCreationRequest.password(),
+                Set.of(UserRole.USER),
                 address
                 );
     }

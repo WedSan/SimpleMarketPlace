@@ -2,7 +2,10 @@ package wedsan.simplemarketplace.infrastructure.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import wedsan.simplemarketplace.core.domain.UserRole;
 import wedsan.simplemarketplace.infrastructure.entity.Address.AddressEntity;
+
+import java.util.Set;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
@@ -17,6 +20,12 @@ public abstract class UserEntity {
     @NotNull
     private String email;
     @NotNull
+    @ElementCollection(targetClass = UserRole.class)
+    @Enumerated(EnumType.STRING)
+    @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
+    @Column(name = "role")
+    private Set<UserRole> userRoles;
+    @NotNull
     private String password;
     @NotNull
     @OneToOne(cascade = CascadeType.PERSIST)
@@ -24,12 +33,13 @@ public abstract class UserEntity {
 
     public UserEntity(){}
 
-    public UserEntity(Long id, String name, String document, String email, String password, AddressEntity address) {
+    public UserEntity(Long id, String name, String document, String email, String password, Set<UserRole> userRoles, AddressEntity address) {
         this.id = id;
         this.name = name;
         this.document = document;
         this.email = email;
         this.password = password;
+        this.userRoles = userRoles;
         this.address = address;
     }
 
@@ -79,5 +89,13 @@ public abstract class UserEntity {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Set<UserRole> getUserRoles() {
+        return userRoles;
+    }
+
+    public void setUserRoles(Set<UserRole> userRole) {
+        this.userRoles = userRole;
     }
 }

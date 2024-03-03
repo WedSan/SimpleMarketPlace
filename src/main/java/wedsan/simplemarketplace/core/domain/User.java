@@ -1,5 +1,7 @@
 package wedsan.simplemarketplace.core.domain;
 
+import java.util.Set;
+
 public abstract class User {
 
     private Long id;
@@ -12,25 +14,29 @@ public abstract class User {
 
     private String password;
 
+    private Set<UserRole> userRoles;
+
     private Address address;
 
     public User(){}
 
 
-    public User(String name, UserDocument document, String email, String password, Address address) {
+    public User(String name, UserDocument document, String email, String password, Set<UserRole> userRoles, Address address) {
         this.name = name;
         this.document = document;
         this.email = email;
         this.password = password;
+        this.userRoles = userRoles;
         this.address = address;
     }
 
-    public User(Long id, String name, UserDocument document, String email, String password, Address address) {
+    public User(Long id, String name, UserDocument document, String email, String password, Set<UserRole> userRoles, Address address) {
         this.id = id;
         this.name = name;
         this.document = document;
         this.email = email;
         this.password = password;
+        this.userRoles = userRoles;
         this.address = address;
     }
 
@@ -82,5 +88,13 @@ public abstract class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Set<UserRole> getUserRoles() {
+        return userRoles;
+    }
+
+    public void setUserRoles(Set<UserRole> userRoles) {
+        this.userRoles = userRoles;
     }
 }

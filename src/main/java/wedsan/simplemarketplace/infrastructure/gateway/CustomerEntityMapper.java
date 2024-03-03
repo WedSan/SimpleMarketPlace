@@ -1,7 +1,6 @@
 package wedsan.simplemarketplace.infrastructure.gateway;
 
 import org.springframework.stereotype.Component;
-import wedsan.simplemarketplace.core.domain.Address;
 import wedsan.simplemarketplace.core.domain.Customer;
 import wedsan.simplemarketplace.core.domain.CustomerDocument;
 import wedsan.simplemarketplace.infrastructure.entity.Address.AddressEntity;
@@ -22,6 +21,7 @@ public class CustomerEntityMapper {
                 customer.getDocument().getDocumentNumber(),
                 customer.getEmail(),
                 customer.getPassword(),
+                customer.getUserRoles(),
                 new AddressEntity(customer.getAddress()));
     }
 
@@ -31,6 +31,7 @@ public class CustomerEntityMapper {
                 new CustomerDocument(customerEntity.getDocument()),
                 customerEntity.getEmail(),
                 customerEntity.getPassword(),
+                customerEntity.getUserRoles(),
                 addressEntityMapper.toDomain(customerEntity.getAddress()));
     }
 
