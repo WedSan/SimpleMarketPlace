@@ -4,13 +4,13 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import org.springframework.stereotype.Service;
+import wedsan.simplemarketplace.application.usecase.gateway.TokenGeneratorGateway;
+import wedsan.simplemarketplace.core.domain.TokenType;
 
-import java.security.NoSuchAlgorithmException;
-import java.time.Instant;
 import java.util.Date;
 
 @Service
-public class JWTService {
+public class JWTService implements TokenGeneratorGateway {
 
     private final JWTKey jwtKey;
 
@@ -18,14 +18,31 @@ public class JWTService {
         this.jwtKey = jwtKey;
     }
 
-    private String generateToken(String subject) throws NoSuchAlgorithmException {
+    @Override
+    public String generateToken(String subject) {
+        return generateToken(subject, TokenTypeImpl.JWT_TOKEN);
+    }
+
+    public String generateToken(String subject, TokenTypeImpl tokenType, Date issuedDate, Date expirationTime)  {
         String password = jwtKey.getKEY();
-        Instant expirationTime = getExpirationTime();
+
+        return JWT.create()
+                .withSubject(subject)
+                .withIssuedAt(issuedDate)
+                .withExpiresAt(expirationTime)
+                .withClaim("TokenType", tokenType.getLabel())
+                .sign(Algorithm.HMAC256(password));
+    }
+
+    public String generateToken(String subject, TokenType tokenType)  {
+        String password = jwtKey.getKEY();
+        Date tokenExpirationTime = getExpirationTime(3600);
 
         return JWT.create()
                 .withSubject(subject)
                 .withIssuedAt(new Date())
-                .withExpiresAt(expirationTime)
+                .withExpiresAt(tokenExpirationTime)
+                .withClaim("TokenType", tokenType.getLabel())
                 .sign(Algorithm.HMAC256(password));
     }
 
@@ -50,9 +67,10 @@ public class JWTService {
         }
     }
 
-    private Instant getExpirationTime(){
+
+    private Date getExpirationTime(int secondsToAdd){
         Date currentDate = new Date();
-        return currentDate.toInstant().plusSeconds(10000);
+        return Date.from(currentDate.toInstant().plusSeconds(secondsToAdd));
     }
 
 
