@@ -4,12 +4,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import wedsan.simplemarketplace.application.usecase.CreateCustomerUseCase;
 import wedsan.simplemarketplace.application.usecase.CreateShopkeeperUseCase;
-import wedsan.simplemarketplace.application.usecase.gateway.CustomerGateway;
-import wedsan.simplemarketplace.application.usecase.gateway.PasswordEncoderGateway;
-import wedsan.simplemarketplace.application.usecase.gateway.ShopkeeperGateway;
-import wedsan.simplemarketplace.application.usecase.gateway.UserGateway;
+import wedsan.simplemarketplace.application.usecase.LogInUseCase;
+import wedsan.simplemarketplace.application.usecase.gateway.*;
 import wedsan.simplemarketplace.application.usecase.impl.CreateCustomerUseCaseImpl;
 import wedsan.simplemarketplace.application.usecase.impl.CreateShopkeeperUseCaseImpl;
+import wedsan.simplemarketplace.application.usecase.impl.LogInUseCaseImpl;
 import wedsan.simplemarketplace.core.DuplicateDocumentValidator;
 import wedsan.simplemarketplace.core.domain.DuplicateEmailValidator;
 import wedsan.simplemarketplace.core.domain.UserValidator;
@@ -35,6 +34,11 @@ public class UserConfig {
     @Bean
     CreateCustomerUseCase createCustomerUseCase(CustomerGateway customerGateway, List<UserValidator> userValidatorList, PasswordEncoderGateway passwordEncoder){
         return new CreateCustomerUseCaseImpl(customerGateway, userValidatorList, passwordEncoder);
+    }
+
+    @Bean
+    LogInUseCase logInUseCase(TokenGeneratorGateway tokenGenerator, UserAuthenticatorGateway userAuthenticator, RefreshTokenGateway refreshTokenGateway){
+        return new LogInUseCaseImpl(tokenGenerator, userAuthenticator, refreshTokenGateway);
     }
 
 }
