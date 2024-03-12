@@ -21,8 +21,10 @@ public class JWTRefreshTokenService implements RefreshTokenGateway {
 
     private JWTKey jwtKey;
 
-    public JWTRefreshTokenService(RefreshTokenRepository refreshTokenRepository) {
+    public JWTRefreshTokenService(RefreshTokenRepository refreshTokenRepository, JWTService jwtService, JWTKey jwtKey) {
         this.refreshTokenRepository = refreshTokenRepository;
+        this.jwtService = jwtService;
+        this.jwtKey = jwtKey;
     }
 
     @Override

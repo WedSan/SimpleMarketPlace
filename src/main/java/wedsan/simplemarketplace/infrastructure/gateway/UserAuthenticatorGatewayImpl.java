@@ -13,6 +13,10 @@ public class UserAuthenticatorGatewayImpl implements UserAuthenticatorGateway {
 
     private AuthenticationManager authenticationManager;
 
+    public UserAuthenticatorGatewayImpl(AuthenticationManager authenticationManager) {
+        this.authenticationManager = authenticationManager;
+    }
+
     @Override
     public boolean verifyCredentials(AuthLogin user) {
         try{
