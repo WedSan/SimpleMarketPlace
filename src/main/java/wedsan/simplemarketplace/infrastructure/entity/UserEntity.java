@@ -2,6 +2,8 @@ package wedsan.simplemarketplace.infrastructure.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import wedsan.simplemarketplace.core.domain.UserRole;
 import wedsan.simplemarketplace.infrastructure.entity.Address.AddressEntity;
 
@@ -24,6 +26,7 @@ public abstract class UserEntity {
     @Enumerated(EnumType.STRING)
     @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
     @Column(name = "role")
+    @Fetch(FetchMode.JOIN)
     private Set<UserRole> userRoles;
     @NotNull
     private String password;
